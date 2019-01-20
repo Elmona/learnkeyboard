@@ -3,11 +3,13 @@ import React, { useState, useRef, useEffect } from 'react';
 import Wrapper from './styles/Wrapper'
 import Letter from './styles/Letter'
 
+import ProgressBar from './components/ProgressBar'
+
 const letters = [
-  'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
-  'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p',
-  'q', 'r', 's', 't', 'u', 'v', 'x', 'y',
-  'z', 'å', 'ä', 'ö',
+  'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
+  'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
+  'Q', 'R', 'S', 'T', 'U', 'V', 'X', 'Y',
+  'Z', 'Å', 'Ä', 'Ö',
 ]
 
 const getRandomLetter = () =>
@@ -15,7 +17,9 @@ const getRandomLetter = () =>
 
 const App = () => {
   const txt = useRef(null)
+
   const [randomLetter, setRandomLetter] = useState(getRandomLetter())
+  const [percent, setPercent] = useState(0)
 
   useEffect(() => {
     txt.current.focus()
@@ -27,17 +31,16 @@ const App = () => {
 
       <input
         ref={txt}
+        style={{ width: '5%', alignSelf: 'center', marginBottom: '20px' }}
         onChange={e => {
-          console.log(randomLetter)
-          if (e.target.value === randomLetter) {
-            console.log('success')
+          if (e.target.value.toLocaleUpperCase() === randomLetter) {
             setRandomLetter(getRandomLetter())
-          } else {
-            console.log('fail')
+            setPercent(percent + 2)
           }
           e.target.value = ''
         }}
       />
+      <ProgressBar percentage={percent} />
     </Wrapper>
   )
 }
