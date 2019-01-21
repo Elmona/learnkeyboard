@@ -6,7 +6,6 @@ const Container = styled.div`
   left: 0;
   top: 0;
   background-color: #ebebeb;
-  scroll: auto;
 `
 
 export default Container
