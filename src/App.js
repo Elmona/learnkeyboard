@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 
 import Wrapper from './styles/Wrapper'
 import Letter from './styles/Letter'
+import Input from './styles/Input'
 
 import ProgressBar from './components/ProgressBar'
 import Win from './components/Win'
@@ -47,9 +48,8 @@ const App = () => {
       {win && <Win />}
       <Letter>{randomLetter}</Letter>
       <ProgressBar percentage={percent} />
-      <input
+      <Input
         ref={txt}
-        style={{ width: '5%', alignSelf: 'center', marginTop: '20px', marginBottom: '40px' }}
         onChange={e => {
           if (e.target.value.toLocaleUpperCase() === randomLetter) {
             setRandomLetter(getRandomLetter())

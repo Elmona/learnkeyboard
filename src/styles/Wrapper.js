@@ -5,6 +5,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   background: #fff;
   margin: 20px auto;
+  margin-top: 0px;
   padding: 20px;
   text-align: center;
   padding-bottom: 40px;
@@ -14,7 +15,7 @@ const Wrapper = styled.div`
   border-radius: 0.4em;
   @media (max-width: 420px) {
     width: 95%;
-    top: 5px;
+    top: 0px;
   }
   @media (max-width: 320px) {
     width: 100%;
