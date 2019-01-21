@@ -49,7 +49,7 @@ const App = () => {
       <ProgressBar percentage={percent} />
       <input
         ref={txt}
-        style={{ width: '5%', alignSelf: 'center', marginTop: '20px' }}
+        style={{ width: '5%', alignSelf: 'center', marginTop: '20px', marginBottom: '40px' }}
         onChange={e => {
           if (e.target.value.toLocaleUpperCase() === randomLetter) {
             setRandomLetter(getRandomLetter())
