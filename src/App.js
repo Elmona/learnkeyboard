@@ -1,72 +1,27 @@
-import React, { useState, useRef, useEffect } from 'react';
-
+import React, { useState } from 'react'
 import Wrapper from './styles/Wrapper'
-import Letter from './styles/Letter'
-import Input from './styles/Input'
-
-import ProgressBar from './components/ProgressBar'
-import Win from './components/Win'
-
-const letters = [
-  'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
-  'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
-  'Q', 'R', 'S', 'T', 'U', 'V', 'X', 'Y',
-  'Z', 'Å', 'Ä', 'Ö',
-]
-
-const getRandomLetter = () =>
-  letters[Math.floor(Math.random() * letters.length)]
-
-const useSetFocusOnInput = txt => {
-  useEffect(() => {
-    txt.current.focus()
-    const clickFocus = document.addEventListener('click',
-      () => txt.current.focus())
-
-    return () => document.removeEventListener('click', clickFocus)
-  }, [])
-}
-
-const useUpdateTitle = randomLetter => {
-  useEffect(() => {
-    document.title = `Letter: ${randomLetter}`
-  }, [randomLetter])
-}
+import Game from './components/Game'
+import HighScore from './components/HighScore'
 
 const App = () => {
-  const txt = useRef(null)
-
-  const [randomLetter, setRandomLetter] = useState(getRandomLetter())
-  const [percent, setPercent] = useState(0)
-  const [win, setWin] = useState(false)
-
-  useSetFocusOnInput(txt)
-  useUpdateTitle(randomLetter)
+  const [page, setPage] = useState(0)
+  const [startTime, setStartTime] = useState(0)
+  const [stopTime, setStopTime] = useState(0)
 
   return (
     <Wrapper>
-      {win && <Win />}
-      <Letter>{randomLetter}</Letter>
-      <ProgressBar percentage={percent} />
-      <Input
-        ref={txt}
-        onChange={e => {
-          if (e.target.value.toLocaleUpperCase() === randomLetter) {
-            setRandomLetter(getRandomLetter())
-            setPercent(percent + 2)
-            if (percent >= 100) {
-              setWin(true)
-              setTimeout(() => {
-                setWin(false)
-              }, 6000)
-              setPercent(0)
-            }
-          }
-          e.target.value = ''
-        }}
-      />
+      {page === 0 && <Game
+        setPage={setPage}
+        setStopTime={setStopTime}
+        setStartTime={setStartTime}
+        startTime={startTime} />}
+
+      {page === 1 && <HighScore
+        setPage={setPage}
+        startTime={startTime}
+        stopTime={stopTime} />}
     </Wrapper>
   )
 }
 
-export default App;
+export default App
