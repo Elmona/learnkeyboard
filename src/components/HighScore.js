@@ -36,12 +36,14 @@ const HighScore = props => {
         : (
           <div>
             <p style={{ fontSize: '5em' }}>HighScore!</p>
-            {list.map(highScore => (
-              <div>
-                <p>{highScore.name} {highScore.time} sekunder</p>
+            {list.map((highScore, index) => (
+              <div style={{ fontSize: '1.4em', display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
+                <p>{++index}. {highScore.name}</p>
+                <p style={{ paddingLeft: '20px' }}>{highScore.time} sekunder</p>
               </div>
             ))}
             <button
+              style={{ marginTop: '20px' }}
               onClick={() => {
                 setStartTime(0)
                 setPage(0)
