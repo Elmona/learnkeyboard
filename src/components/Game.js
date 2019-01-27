@@ -63,7 +63,7 @@ const Game = props => {
               setStartTime(new Date())
 
             setRandomLetter(getRandomLetter())
-            setPercent(percent + 5)
+            setPercent(percent + 10)
             if (percent >= 100) {
               setStopTime(new Date())
               setWin(true)

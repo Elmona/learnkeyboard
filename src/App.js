@@ -19,6 +19,7 @@ const App = () => {
       {page === 1 && <HighScore
         setPage={setPage}
         startTime={startTime}
+        setStartTime={setStartTime}
         stopTime={stopTime} />}
     </Wrapper>
   )

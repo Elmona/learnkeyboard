@@ -6,6 +6,8 @@ const HighScore = props => {
   const startTime = props.startTime
   const stopTime = props.stopTime
   const setPage = props.setPage
+  const setStartTime = props.setStartTime
+
   const totalTime = ((stopTime - startTime) / 1000).toFixed(1)
   const list = getHighScore()
 
@@ -40,7 +42,10 @@ const HighScore = props => {
               </div>
             ))}
             <button
-              onClick={() => setPage(0)}
+              onClick={() => {
+                setStartTime(0)
+                setPage(0)
+              }}
             >Spela igen!</button>
           </div>
         )}
